@@ -30,6 +30,23 @@ def SetCameraCustomResolution(self, context):
     context.scene.render.resolution_x = context.active_object.camera_custom_resolution_settings_pointer_prop.Custom_Horizontal_Resolution
     context.scene.render.resolution_y = context.active_object.camera_custom_resolution_settings_pointer_prop.Custom_Vertical_Resolution
 
+#How to set camera resolution (webcam) with opencv?
+ cv::VideoCapture cap;
+if (!cap.isOpened())  // check if succeeded to connect to the camera
+   CV_Assert("Cam open failed");
+
+cap.set(CV_CAP_PROP_FRAME_WIDTH,640);
+cap.set(CV_CAP_PROP_FRAME_HEIGHT,480);
+#then if you use OpenCV 3 just replace the last instructions with these:
+then if you use OpenCV 3 just replace the last instructions with these:
+
+cap.set(cv::CAP_PROP_FRAME_WIDTH, valueX); // valueX = your wanted width
+cap.set(cv::CAP_PROP_FRAME_HEIGHT, valueY); // valueY = your wanted heigth
+
+
+
+
+
 # CAMERA VIEW OFF
 class CameraViewOff(bpy.types.Operator):
     bl_idname = 'cameras.camera_view_off'
